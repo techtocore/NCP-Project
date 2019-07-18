@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+
+</head>
+
+<body>
+
+    <nav>
+        <div class="nav-wrapper">
+            <a href="#" class="brand-logo"> <img class="responsive-img" style="width: 200px; padding:10px;"
+                    src="https://www.amrita.edu/sites/default/files/amrita-new-logo-color-10.png" /></a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li>
+                    <div class="chip">
+                        <img src="images/yuna.jpg">
+                        Akash Ravi
+                    </div>
+                </li>
+                <li><a href="#">Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+    <br>
+    <div class="row">
+
+        <div class="col s12 m4 l3">
+            <ul class="collection with-header">
+                <li class="collection-header">
+                    <h4>Menu</h4>
+                </li>
+                <li class="collection-item">Personal</li>
+                <li class="collection-item">Academic</li>
+                <li class="collection-item">Other</li>
+            </ul>
+
+        </div>
+
+        <div class="col s12 m8 l9">
+            <div class="row">
+                <form class="col s12">
+                    <br>
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <i class="material-icons prefix">account_circle</i>
+                            <input placeholder="Competitive Exams Appeared" value="  " id="name" type="text"
+                                class="active validate" required />
+                            <label for="name">Competitive Exams Appeared</label>
+                        </div>
+
+                        <div class="input-field col s6">
+                            <label for="clubs">Clubs which you are part of</label>
+                            <input id="clubs" type="text" placeholder="Password" class="active validate" required />
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <input placeholder="Events" id="events" type="text" class="validate">
+                            <label for="email">Events organised</label>
+                        </div>
+                        <div class="input-field col s6">
+                            <input placeholder="Events att" id="eventsatt" type="text" class="validate">
+                            <label for="phone">Events Attended</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <input placeholder="Workshops" id="workshops" type="text" class="validate">
+                            <label for="email">Workshops organised</label>
+                        </div>
+                        <div class="input-field col s6">
+                            <input placeholder="Workshopsatt" id="workshopsatt" type="text" class="validate">
+                            <label for="phone">Workshops Attended</label>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <i class="material-icons prefix">mode_edit</i>
+                            <textarea id="address" class="materialize-textarea" type="address"></textarea>
+                            <label for="address">Describe the important events/workshops in detail</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <i class="material-icons prefix">mode_edit</i>
+                            <textarea id="address" class="materialize-textarea" type="address"></textarea>
+                            <label for="address">Any Research Papers/ Projects working on?</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <p>
+                                <input id="ongoing" type="radio" name="research" value="ongoing" checked />
+                                <label for="ongoing">Ongoing</label>
+                            </p>
+                            <p>
+                                <input id="Published" type="radio" name="research" value="published" />
+                                <label for="published">Published</label>
+                            </p>
+                        </div>
+                        <div class="input-field col s6">
+
+                            
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <input placeholder="Religion" id="Religion" type="text" class="validate">
+                            <label for="Religion">Religion</label>
+                        </div>
+                        <div class="input-field col s6">
+                            <input placeholder="Caste" id="Caste" type="text" class="validate">
+                            <label for="Caste">Caste</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <input placeholder="Specialization Field" id="sp" type="text" class="validate">
+                            <label for="sp">Fields of Specialization</label>
+                        </div>
+                        <div class="input-field col s6">
+                            <input placeholder="CompLanguages" id="gno" type="number" class="validate">
+                            <label for="gno">Computer Languages Known</label>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s8">
+
+            </div>
+            <div class="input-field col s4">
+                <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+                    <i class="material-icons right">send</i>
+                </button>
+
+            </div>
+        </div>
+
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+            integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+</body>
+
+</html>
