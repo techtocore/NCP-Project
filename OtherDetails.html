@@ -11,6 +11,14 @@
         href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
     <link rel="stylesheet" type="text/css" href="css/main.css">
 
+    <script type="text/javascript">
+
+        function warn() {
+            alert("Admin approved");
+        }
+
+    </script>
+
 </head>
 
 <body>
@@ -59,7 +67,8 @@
 
                         <div class="input-field col s6">
                             <label for="clubs">Clubs which you are part of</label>
-                            <input id="clubs" type="text" placeholder="Clubs in which you are a part" class="active validate" required />
+                            <input id="clubs" type="text" placeholder="Clubs in which you are a part"
+                                class="active validate" required />
                         </div>
                     </div>
 
@@ -101,7 +110,7 @@
                     <div class="row">
                         <div class="input-field col s6">
                             <p>
-                                <input id="ongoing" type="radio" name="research" value="ongoing"  />
+                                <input id="ongoing" type="radio" name="research" value="ongoing" />
                                 <label for="ongoing">Ongoing</label>
                             </p>
                             <p>
@@ -111,7 +120,7 @@
                         </div>
                         <div class="input-field col s6">
 
-                            
+
                         </div>
                     </div>
                     <br>
@@ -133,12 +142,14 @@
 
             </div>
             <div class="input-field col s4">
-                <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+                <button class="btn waves-effect waves-light" type="submit" name="action" onclick="warn()">Submit
                     <i class="material-icons right">send</i>
                 </button>
 
             </div>
         </div>
+
+
 
         <script src="https://code.jquery.com/jquery-3.4.1.min.js"
             integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
