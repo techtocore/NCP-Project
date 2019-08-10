@@ -11,6 +11,14 @@
         href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
     <link rel="stylesheet" type="text/css" href="css/main.css">
 
+    <script type="text/javascript">
+
+        function warn() {
+            alert("Admin approved");
+        }
+
+    </script>
+
 </head>
 
 <body>
@@ -26,7 +34,7 @@
                         Akash Ravi
                     </div>
                 </li>
-                <li><a href="#">Logout</a></li>
+                <li><a href="logout.html">Logout</a></li>
             </ul>
         </div>
     </nav>
@@ -38,9 +46,9 @@
                 <li class="collection-header">
                     <h4>Menu</h4>
                 </li>
-                <li class="collection-item">Personal</li>
-                <li class="collection-item">Academic</li>
-                <li class="collection-item">Other</li>
+                <li class="collection-item"><a href="personal.html">Personal</a></li>
+                <li class="collection-item"><a href="academics.html">Academic</a></li>
+                <li class="collection-item"><a href="OtherDetails.html">Other</a></li>
             </ul>
 
         </div>
@@ -59,7 +67,8 @@
 
                         <div class="input-field col s6">
                             <label for="clubs">Clubs which you are part of</label>
-                            <input id="clubs" type="text" placeholder="Password" class="active validate" required />
+                            <input id="clubs" type="text" placeholder="Clubs in which you are a part"
+                                class="active validate" required />
                         </div>
                     </div>
 
@@ -69,7 +78,7 @@
                             <label for="email">Events organised</label>
                         </div>
                         <div class="input-field col s6">
-                            <input placeholder="Events att" id="eventsatt" type="text" class="validate">
+                            <input placeholder="Events attended" id="eventsatt" type="text" class="validate">
                             <label for="phone">Events Attended</label>
                         </div>
                     </div>
@@ -79,7 +88,7 @@
                             <label for="email">Workshops organised</label>
                         </div>
                         <div class="input-field col s6">
-                            <input placeholder="Workshopsatt" id="workshopsatt" type="text" class="validate">
+                            <input placeholder="Workshops attended" id="workshopsatt" type="text" class="validate">
                             <label for="phone">Workshops Attended</label>
                         </div>
                     </div>
@@ -101,45 +110,28 @@
                     <div class="row">
                         <div class="input-field col s6">
                             <p>
-                                <input id="ongoing" type="radio" name="research" value="ongoing" checked />
+                                <input id="ongoing" type="radio" name="research" value="ongoing" />
                                 <label for="ongoing">Ongoing</label>
                             </p>
                             <p>
-                                <input id="Published" type="radio" name="research" value="female" />
-                                <label for="female">Female</label>
+                                <input id="Published" type="radio" name="research" value="published" />
+                                <label for="published">Published</label>
                             </p>
                         </div>
                         <div class="input-field col s6">
 
-                            <p>
-                                <input id="Hosteller" type="radio" name="stay" value="Hosteller" checked />
-                                <label for="Hosteller">Hosteller</label>
-                            </p>
-                            <p>
-                                <input id="Dayscholar" type="radio" name="stay" value="Dayscholar" />
-                                <label for="Dayscholar">Dayscholar</label>
-                            </p>
+
                         </div>
                     </div>
                     <br>
                     <div class="row">
                         <div class="input-field col s6">
-                            <input placeholder="Religion" id="Religion" type="text" class="validate">
-                            <label for="Religion">Religion</label>
+                            <input placeholder="Specialization Field" id="sp" type="text" class="validate">
+                            <label for="sp">Fields of Specialization</label>
                         </div>
                         <div class="input-field col s6">
-                            <input placeholder="Caste" id="Caste" type="text" class="validate">
-                            <label for="Caste">Caste</label>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="input-field col s6">
-                            <input placeholder="Gaurdian Name" id="gname" type="text" class="validate">
-                            <label for="gname">Gaurdian Name</label>
-                        </div>
-                        <div class="input-field col s6">
-                            <input placeholder="Gaurdian Contact Number" id="gno" type="number" class="validate">
-                            <label for="gno">Gaurdian Contact Number</label>
+                            <input placeholder="CompLanguages" id="gno" type="text" class="validate">
+                            <label for="gno">Computer Languages Known</label>
                         </div>
                     </div>
                 </form>
@@ -150,12 +142,14 @@
 
             </div>
             <div class="input-field col s4">
-                <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+                <button class="btn waves-effect waves-light" type="submit" name="action" onclick="warn()">Submit
                     <i class="material-icons right">send</i>
                 </button>
 
             </div>
         </div>
+
+
 
         <script src="https://code.jquery.com/jquery-3.4.1.min.js"
             integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
