@@ -11,6 +11,14 @@
         href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
     <link rel="stylesheet" type="text/css" href="css/main.css">
 
+    <script type="text/javascript">
+
+        function warn() {
+            alert("Admin approved");
+        }
+
+    </script>
+
 </head>
 
 <body>
@@ -33,7 +41,7 @@
     <br>
     <div class="row">
 
-       <div class="col s12 m4 l3">
+        <div class="col s12 m4 l3">
             <ul class="collection with-header">
                 <li class="collection-header">
                     <h4>Menu</h4>
@@ -52,25 +60,36 @@
                     <div class="row">
                         <div class="input-field col s6">
                             <i class="material-icons prefix">account_circle</i>
-                            <input placeholder="Username" value="Akash Ravi" id="name" type="text"
+                            <input placeholder="Competitive Exams Appeared" value="  " id="name" type="text"
                                 class="active validate" required />
-                            <label for="name">Username</label>
+                            <label for="name">Competitive Exams Appeared</label>
                         </div>
 
                         <div class="input-field col s6">
-                            <label for="password">Password</label>
-                            <input id="password" type="password" placeholder="Password" class="validate" required />
+                            <label for="clubs">Clubs which you are part of</label>
+                            <input id="clubs" type="text" placeholder="Clubs in which you are a part"
+                                class="active validate" required />
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="input-field col s6">
-                            <input placeholder="Email" id="email" type="email" class="validate">
-                            <label for="email">Email</label>
+                            <input placeholder="Events" id="events" type="text" class="validate">
+                            <label for="email">Events organised</label>
                         </div>
                         <div class="input-field col s6">
-                            <input placeholder="Phone No" id="phone" type="number" class="validate">
-                            <label for="phone">Contact No</label>
+                            <input placeholder="Events attended" id="eventsatt" type="text" class="validate">
+                            <label for="phone">Events Attended</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <input placeholder="Workshops" id="workshops" type="text" class="validate">
+                            <label for="email">Workshops organised</label>
+                        </div>
+                        <div class="input-field col s6">
+                            <input placeholder="Workshops attended" id="workshopsatt" type="text" class="validate">
+                            <label for="phone">Workshops Attended</label>
                         </div>
                     </div>
 
@@ -78,52 +97,41 @@
                         <div class="input-field col s12">
                             <i class="material-icons prefix">mode_edit</i>
                             <textarea id="address" class="materialize-textarea" type="address"></textarea>
-                            <label for="address">Address</label>
+                            <label for="address">Describe the important events/workshops in detail</label>
                         </div>
                     </div>
-
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <i class="material-icons prefix">mode_edit</i>
+                            <textarea id="address" class="materialize-textarea" type="address"></textarea>
+                            <label for="address">Any Research Papers/ Projects working on?</label>
+                        </div>
+                    </div>
                     <div class="row">
                         <div class="input-field col s6">
                             <p>
-                                <input id="male" type="radio" name="gender" value="male" checked />
-                                <label for="male">Male</label>
+                                <input id="ongoing" type="radio" name="research" value="ongoing" />
+                                <label for="ongoing">Ongoing</label>
                             </p>
                             <p>
-                                <input id="female" type="radio" name="gender" value="female" />
-                                <label for="female">Female</label>
+                                <input id="Published" type="radio" name="research" value="published" />
+                                <label for="published">Published</label>
                             </p>
                         </div>
                         <div class="input-field col s6">
 
-                            <p>
-                                <input id="Hosteller" type="radio" name="stay" value="Hosteller" checked />
-                                <label for="Hosteller">Hosteller</label>
-                            </p>
-                            <p>
-                                <input id="Dayscholar" type="radio" name="stay" value="Dayscholar" />
-                                <label for="Dayscholar">Dayscholar</label>
-                            </p>
+
                         </div>
                     </div>
                     <br>
                     <div class="row">
                         <div class="input-field col s6">
-                            <input placeholder="Religion" id="Religion" type="text" class="validate">
-                            <label for="Religion">Religion</label>
+                            <input placeholder="Specialization Field" id="sp" type="text" class="validate">
+                            <label for="sp">Fields of Specialization</label>
                         </div>
                         <div class="input-field col s6">
-                            <input placeholder="Caste" id="Caste" type="text" class="validate">
-                            <label for="Caste">Caste</label>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="input-field col s6">
-                            <input placeholder="Gaurdian Name" id="gname" type="text" class="validate">
-                            <label for="gname">Gaurdian Name</label>
-                        </div>
-                        <div class="input-field col s6">
-                            <input placeholder="Gaurdian Contact Number" id="gno" type="number" class="validate">
-                            <label for="gno">Gaurdian Contact Number</label>
+                            <input placeholder="CompLanguages" id="gno" type="text" class="validate">
+                            <label for="gno">Computer Languages Known</label>
                         </div>
                     </div>
                 </form>
@@ -134,12 +142,14 @@
 
             </div>
             <div class="input-field col s4">
-                <button class="btn waves-effect waves-light" type="submit" name="action">Next
+                <button class="btn waves-effect waves-light" type="submit" name="action" onclick="warn()">Submit
                     <i class="material-icons right">send</i>
                 </button>
 
             </div>
         </div>
+
+
 
         <script src="https://code.jquery.com/jquery-3.4.1.min.js"
             integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
