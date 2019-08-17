@@ -15,25 +15,15 @@ async function check(req) {
     var obj = await User.findOne({ username: req.username })
     if (!obj)
         throw new Error('Failed to authenticate token.');
-    request.user = 'true';
-    if (roles_.indexOf("Admin") > 0)
-        req.admin = 'true';
-    else
-        req.admin = 'false';
-    if (roles_.indexOf("Faculty") > 0)
-        req.superuser = 'true';
-    else
-        req.superuser = 'false';
     if (roles_.indexOf("Superuser") > 0)
-        req.superuser = 'true';
+        return true;
     else
-        req.superuser = 'false';
-    return true;
+        throw new Error('Failed to authenticate token as superuser.');
 }
 
 
 
-function verifyToken(req, res, next) {
+function verifySuperUser(req, res, next) {
 
     check(req).then((obj) => {
         next();
@@ -43,4 +33,4 @@ function verifyToken(req, res, next) {
 
 }
 
-module.exports = verifyToken;
+module.exports = verifySuperUser;

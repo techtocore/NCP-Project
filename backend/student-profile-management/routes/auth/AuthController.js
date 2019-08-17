@@ -8,12 +8,6 @@ var VerifyToken = require('./VerifyToken');
 router.use(bodyParser.urlencoded({ extended: false }));
 router.use(bodyParser.json());
 var User = require('../user/User');
-var IsAdmin = require('../isAdmin/isAdmin')
-var IsSuperuser = require('../isSuperuser/IsSuperuser')
-var IsFinanceAdmin = require('../isFinanceAdmin/IsFinanceAdmin');
-var IsVendor = require('../isVendor/IsVendor');
-var UserHardCash = require('../userHardCash/UsernameHardCash');
-var IsFoodAdmin = require('../isFoodAdmin/IsFoodAdmin');
 var bouncer = require('./bouncer');
 var bcrypt = require('bcryptjs');
 var path = require('path');
@@ -40,7 +34,7 @@ async function send_mail(email, sub, message) {
         }
     });
     const mailOptions = {
-        from: 'Amrita E Wallet <' + config.emailConfig.username + '>',
+        from: 'Student Profile Management System <' + config.emailConfig.username + '>',
         to: email,
         subject: sub,
         html: message
@@ -148,48 +142,24 @@ router.post('/login', bouncer.block, function (req, res) {
         if (err) return res.status(500).send({ message: err.toString() });
         if (!user) return res.status(400).send({ message: 'Invalid Credentials' });
 
+        if (!user.active) return res.status(400).send({ auth: false, token: null, message: 'Account Not Active' });
 
         var passwordIsValid = bcrypt.compareSync(req.body.password, user.password);
         if (!passwordIsValid) return res.status(400).send({ auth: false, token: null, message: 'Invalid Credentials' });
 
         var roles = "User"
 
-        var user_ = await IsVendor.findOne({ username: req.body.username });
-        if (user_) {
-            if (user_.isVendor) {
-                roles = 'Vendor'
-            }
+        if (user.isAdmin) {
+            roles += ',Admin'
         }
 
-        var user_ = await IsAdmin.findOne({ username: req.body.username });
-        if (user_) {
-            if (user_.isAdmin) {
-                roles += ',Admin'
-            }
+        if (user.isSuperuser) {
+            roles += ',Superuser'
         }
 
-        var user_ = await IsFoodAdmin.findOne({ username: req.body.username });
-        if (user_) {
-            if (user_.isFoodAdmin) {
-                roles += ',FoodAdmin'
-            }
+        if (user.isFaculty) {
+            roles += ',Faculty'
         }
-
-        var user_ = await IsFinanceAdmin.findOne({ username: req.body.username });
-        if (user_) {
-            if (user_.isFinanceadmin) {
-                roles += ',FinanceAdmin'
-            }
-        }
-
-
-        user_ = await IsSuperuser.findOne({ username: req.body.username });
-        if (user_) {
-            if (user_.isSuperuser) {
-                roles += ',Superuser'
-            }
-        }
-
 
         var token = jwt.sign({ id: user._id, roles: roles, username: user.username }, config.secret, {
             expiresIn: 86400 // expires in 24 hours
@@ -204,79 +174,22 @@ router.get('/logout', function (req, res) {
     res.status(200).send({ auth: false, token: null });
 });
 
-// router.post('/register', async function (req, res) {
-
-//     console.log(req.body);
-
-//     const obj = req.body;
-
-//     const session = await mongoose.startSession();
-//     await session.startTransaction();
-
-//     try {
-
-//         var newUser = new User({
-//             name: obj.name,
-//             username: obj.username,
-//             password: obj.password,
-//             phoneNumber: obj.phoneNumber
-//         });
-//         var ret3 = await newUser.save();
-//         var newisAdmin = new IsAdmin({
-//             username: obj.username,
-//             isAdmin: false
-//         });
-//         ret3 = await newisAdmin.save();
-
-//         var newisSuperuser = new IsSuperuser({
-//             username: obj.username,
-//             isSuperuser: false
-//         });
-//         ret3 = await newisSuperuser.save();
+router.post('/register', async function (req, res) {
+    User.create({
+        name: req.body.name,
+        password: hashedPassword,
+        username: req.body.username,
+        phoneNumber: req.body.phoneNumber,
+        email: req.body.email,
+        active: true
+    },
+        function (err, user) {
+            if (err) return res.status(500).send("There was a problem adding the information to the database.");
+            res.status(200).send(user);
+        });
 
 
-//         var newisVendor = new IsVendor({
-//             username: obj.username,
-//             isVendor: false
-//         });
-//         ret3 = await newisVendor.save();
-
-
-//         var newisFinanceAdmin = new IsFinanceAdmin({
-//             username: obj.username,
-//             isFinanceadmin: false
-//         });
-//         ret3 = await newisFinanceAdmin.save();
-
-//         var newisFoodAdmin = new IsFoodAdmin({
-//             username: obj.username,
-//             IsFoodAdmin: false
-//         });
-//         ret3 = await newisFoodAdmin.save();
-
-//         var newUserHardCash = new UserHardCash({
-//             username: obj.username,
-//             amount: parseFloat(0)
-//         });
-//         ret3 = await newUserHardCash.save();
-
-
-//         await session.commitTransaction();
-//         await session.endSession();
-
-//         var token = jwt.sign({ id: user._id, roles: 'User', username: user.username }, config.secret, {
-//             expiresIn: 86400
-//         });
-
-//         res.status(200).send({ auth: true, token: token, username: req.body.username });
-
-//     } catch (error) {
-//         await session.abortTransaction();
-//         await session.endSession();
-//         res.status(400).send("There was a problem registering the user. " + error.toString());
-//     }
-
-// });
+});
 
 router.get('/me', VerifyToken, function (req, res, next) {
     // console.log(req.userId);
