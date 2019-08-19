@@ -15,7 +15,7 @@ async function check(req) {
     var obj = await User.findOne({ username: req.username })
     if (!obj)
         throw new Error('Failed to authenticate token.');
-    request.user = 'true';
+    req.user = 'true';
     if (roles_.indexOf("Admin") > 0)
         req.admin = 'true';
     else

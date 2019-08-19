@@ -17,10 +17,11 @@ var nodemailer = require('nodemailer');
 var jwt = require('jsonwebtoken');
 var config = require('../../config');
 
-const resetpasswordmail = pug.compileFile(path.join(__dirname, '../../views/resetPasswordMail.pug'));
+// const resetpasswordmail = pug.compileFile(path.join(__dirname, '../../views/resetPasswordMail.pug'));
 
 function generate_resetpasswordmail(time, name, url) {
-    return resetpasswordmail({ time: time, name: name, url: url });
+    return ''
+    // resetpasswordmail({ time: time, name: name, url: url });
 }
 
 async function send_mail(email, sub, message) {
@@ -175,24 +176,36 @@ router.get('/logout', function (req, res) {
 });
 
 router.post('/register', async function (req, res) {
-    User.create({
+
+    var hashedPassword = bcrypt.hashSync(req.body.password, 12);
+    var data = {
+        username: req.body.username,
         name: req.body.name,
         password: hashedPassword,
-        username: req.body.username,
         phoneNumber: req.body.phoneNumber,
         email: req.body.email,
-        active: true
-    },
-        function (err, user) {
-            if (err) return res.status(500).send("There was a problem adding the information to the database.");
-            res.status(200).send(user);
-        });
+        active: true,
+    }
 
+    var user = await User.findOne({ username: data.username });
 
+    if (user) {
+        res.status(400).send({ message: "Username Already Exists" })
+        return;
+    }
+
+    try {
+        user = await User.create(data);
+        res.status(200).send(user);
+        return;
+    }
+    catch (error) {
+        res.status(500).send({ message: error.toString() });
+        return;
+    }
 });
 
 router.get('/me', VerifyToken, function (req, res, next) {
-    // console.log(req.userId);
     User.findById(req.userId, { password: 0, _id: 0, __v: 0 }, function (err, user) {
         if (err) return res.status(500).send("There was a problem finding the user.");
         if (!user) return res.status(404).send("No user found.");

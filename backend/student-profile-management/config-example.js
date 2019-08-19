@@ -16,6 +16,7 @@ module.exports = {
     email: 'akashkravi@gmail.com',
   }],
   'emailConfig': {
+    name: 'Student Profile Management System',
     username: '<mail-id>',
     password: '<password>',
     host: '<host>',
