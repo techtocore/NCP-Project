@@ -14,7 +14,7 @@ router.use(bodyParser.urlencoded({ extended: true }));
 async function addDetails(data) {
     try {
         const options = { upsert: true, new: true, setDefaultsOnInsert: true };
-        const A = await PersonalDetail.findOneAndUpdate({}, data, options);
+        const A = await PersonalDetail.findOneAndUpdate({ username: data.username }, data, options);
         return { message: 'Updated Successfuly' };
     }
     catch (error) {

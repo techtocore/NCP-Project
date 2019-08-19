@@ -6,10 +6,11 @@ var logger = require('morgan');
 var db = require('./db');
 
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+var usersRouter = require('./routes/user/UserController');
 var authRouter = require('./routes/auth/AuthController');
 var personalDetailsRouter = require('./routes/personalDetails/PersonalDetailsController');
 var academicDetailsRouter = require('./routes/academicDetails/AcademicDetailsController');
+var otherDetailsRouter = require('./routes/otherDetails/OtherDetailsController')
 
 var app = express();
 
@@ -28,6 +29,7 @@ app.use('/api/users', usersRouter);
 app.use('/api/auth', authRouter);
 app.use('/api/personaldetails', personalDetailsRouter);
 app.use('/api/academicdetails', academicDetailsRouter);
+app.use('/api/otherdetails', otherDetailsRouter)
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

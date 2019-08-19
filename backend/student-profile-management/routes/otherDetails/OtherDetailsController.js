@@ -6,7 +6,7 @@ var mongoose = require('mongoose');
 var VerifyToken = require('../auth/VerifyToken');
 var VerifySuperUser = require('../auth/VerifySuperUser');
 
-var AcademicDetail = require('./AcademicDetails');
+var OtherDetail = require('./OtherDetails');
 var config = require('../../config');
 
 router.use(bodyParser.urlencoded({ extended: true }));
@@ -14,7 +14,7 @@ router.use(bodyParser.urlencoded({ extended: true }));
 async function addDetails(data) {
     try {
         const options = { upsert: true, new: true, setDefaultsOnInsert: true };
-        const A = await AcademicDetail.findOneAndUpdate({ username: data.username }, data, options);
+        const A = await OtherDetail.findOneAndUpdate({ username: data.username }, data, options);
         return { message: 'Updated Successfuly' };
     }
     catch (error) {
@@ -26,26 +26,26 @@ router.post('/:username?', VerifyToken, function (req, res) {
     if (req.params.username && !(req.superuser == 'true' || req.admin == 'true' || req.faculty == 'true'))
         return res.status(403).send({ auth: false, message: 'Not Allowed' });
 
+    if (req.body.papersAndProjectStatus.toLowerCase().includes("published"))
+        req.body.papersAndProjectStatus = true;
+    else
+        req.body.papersAndProjectStatus = false;
+
     const username = req.params.username || req.username;
 
     const data = {
         username: username,
-        sslcInstitution: req.body.sslcInstitution,
-        sslcBoard: req.body.sslcBoard,
-        sslcYearOfPassing: parseInt(req.body.sslcYearOfPassing),
-        sslcMarks: parseFloat(req.body.sslcMarks),
-        hscInstitution: req.body.hscInstitution,
-        hscBoard: req.body.hscBoard,
-        hscYearOfPassing: parseInt(req.body.hscYearOfPassing),
-        hscMarks: parseFloat(req.body.hscMarks),
-        ugAdmissionNumber: req.body.ugAdmissionNumber,
-        ugAcademicProgram: req.body.ugAcademicProgram,
-        ugYearOfJoining: parseInt(req.body.ugYearOfJoining),
-        ugYearofPassing: parseInt(req.body.ugYearofPassing),
-        ugEnrollmentStatus: req.body.ugEnrollmentStatus,
-        ugSemester: parseInt(req.body.ugSemester),
-        ugSGPA: parseFloat(req.body.ugSGPA),
-        ugCGPA: parseFloat(req.body.ugCGPA),
+        competitiveExamsAppeared: req.body.competitiveExamsAppeared,
+        clubs: req.body.clubs,
+        eventsOrganised: req.body.eventsOrganised,
+        eventsAttended: req.body.eventsAttended,
+        workshopsOrganised: req.body.workshopsOrganised,
+        workshopsAttended: req.body.workshopsAttended,
+        eventsAndWorkshop: req.body.eventsAndWorkshop,
+        papersAndProject: req.body.papersAndProject,
+        papersAndProjectStatus: req.body.papersAndProjectStatus,
+        fieldsOfSpecialization: req.body.fieldsOfSpecialization,
+        computerLanguagesKnown: req.body.computerLanguagesKnown,
     }
 
     addDetails(data).then((msg) => {
@@ -63,7 +63,7 @@ router.get('/:username?', VerifyToken, async function (req, res) {
     const username = req.params.username || req.username;
 
     try {
-        const data = await AcademicDetail.findOne({ username: username }, { _id: 0, __v: 0 })
+        const data = await OtherDetail.findOne({ username: username }, { _id: 0, __v: 0 })
 
         if (!data)
             return res.status(404).send({ message: "Not Found" })
@@ -80,7 +80,7 @@ router.get('/data/all', VerifyToken, async function (req, res) {
         return res.status(403).send({ auth: false, message: 'Not Allowed' });
 
     try {
-        const data = await AcademicDetail.find({}, { _id: 0, __v: 0 })
+        const data = await OtherDetail.find({}, { _id: 0, __v: 0 })
 
         if (!data)
             return res.status(404).send({ message: "Not Found" })

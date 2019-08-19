@@ -3,12 +3,16 @@ var router = express.Router();
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 
-var VerifyToken = require(__root + 'auth/VerifyToken');
+var VerifyToken = require('../auth/VerifyToken');
 
 router.use(bodyParser.urlencoded({ extended: true }));
 var User = require('./User');
 var bcrypt = require('bcryptjs');
 var config = require('../../config');
+
+var AcademicDetail = require('../academicDetails/AcademicDetails')
+var PersonalDetail = require('../personalDetails/PersonalDetails')
+var OtherDeatil = require('../otherDetails/OtherDetails')
 
 // CREATES A NEW USER
 router.post('/', function (req, res) {
@@ -48,12 +52,86 @@ router.get('/', function (req, res) {
 });
 
 // GETS A SINGLE USER FROM THE DATABASE
-router.get('/:id', function (req, res) {
-    User.findOne({ username: req.params.id }, { password: 0, _id: 0 }, function (err, user) {
-        if (err) return res.status(500).send("There was a problem finding the user.");
-        if (!user) return res.status(404).send("No user found.");
-        res.status(200).send(user);
-    });
+router.get('/me/:username?', VerifyToken, async function (req, res) {
+
+    if (req.params.username && !(req.superuser == 'true' || req.admin == 'true' || req.faculty == 'true'))
+        return res.status(403).send({ auth: false, message: 'Not Allowed' });
+
+    const username = req.params.username || req.username;
+
+    try {
+        const A = await AcademicDetail.findOne({ username: username }, { _id: 0, __v: 0 });
+        const B = await PersonalDetail.findOne({ username: username }, { _id: 0, __v: 0 });
+        const C = await OtherDeatil.findOne({ username: username }, { _id: 0, __v: 0 });
+        const D = await User.findOne({ username: username }, { password: 0, _id: 0, __v: 0 })
+
+
+        return res.status(200).send({ user: D, academicDetail: A, personalDetail: B, otherDeatil: C });
+
+    }
+    catch (error) {
+        return res.status(500).send({ message: error.toString() });
+    }
+});
+
+router.get('/data/all', VerifyToken, async function (req, res) {
+
+    if (!(req.superuser == 'true' || req.admin == 'true' || req.faculty == 'true'))
+        return res.status(403).send({ auth: false, message: 'Not Allowed' });
+
+
+    try {
+        const Q = [{
+            $match: {
+
+            }
+        }, {
+            $lookup: {
+                from: 'academicdetails',
+                localField: 'username',
+                foreignField: 'username',
+                as: 'academicDetail'
+            }
+        }, {
+            $unwind: {
+                path: '$academicDetail',
+                preserveNullAndEmptyArrays: true
+            }
+        }, {
+            $lookup: {
+                from: 'personaldetails',
+                localField: 'username',
+                foreignField: 'username',
+                as: 'personalDetail'
+            }
+        }, {
+            $unwind: {
+                path: '$personalDetail',
+                preserveNullAndEmptyArrays: true
+            }
+        }, {
+            $lookup: {
+                from: 'otherdetails',
+                localField: 'username',
+                foreignField: 'username',
+                as: 'otherDetail'
+            }
+        }, {
+            $unwind: {
+                path: '$otherDetail',
+                preserveNullAndEmptyArrays: true
+            }
+        }];
+
+        const A = await User.aggregate(Q);
+
+
+        return res.status(200).send({ data: A });
+
+    }
+    catch (error) {
+        return res.status(500).send({ message: error.toString() });
+    }
 });
 
 // DELETES A USER FROM THE DATABASE
@@ -113,6 +191,7 @@ router.put('/updatepass/:id', VerifyToken, function (req, res, next) {
         res.status(403).send({ auth: false, message: 'Not Allowed' });
     }
 });
+
 
 
 
