@@ -10,7 +10,7 @@ function login() {
   var settings = {
     "async": true,
     "crossDomain": true,
-    "url": "http://localhost:3000/api/auth/login",
+    "url": baseURL + "/api/auth/login",
     "method": "POST",
     "headers": {
       "Content-Type": "application/json",
@@ -22,7 +22,9 @@ function login() {
 
   $.ajax(settings).done(function (response) {
     console.log(response);
+    localStorage.setItem('token', response.token);
     alert("Login Successful");
+    location.href = location.href.replace(/\/[^\/]*$/, '/personal.html');
   }).fail(function (jqXHR, textStatus) {
     alert(jqXHR.responseJSON.message);
   });
