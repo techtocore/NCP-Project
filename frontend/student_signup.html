@@ -23,9 +23,8 @@
 
       <div class="container">
         <div class="z-depth-1 grey lighten-4 row"
-          style="display: inline-block; padding: 32px 48px 0px 48px; border: 1px solid #EEE;">
-
-          <form class="col s12" action="">
+          style="display: inline-block; padding: 32px 88px 0px 88px; border: 1px solid #EEE;">
+          <form class="col s12">
             <div class='row'>
               <div class='col s12'>
               </div>
@@ -46,6 +45,12 @@
               <div class='input-field col s12'>
                 <input class='validate' type='password' name='password' id='password' />
                 <label for='password'>Enter your password</label>
+              </div>
+            </div>
+            <div class='row'>
+              <div class='input-field col s12'>
+                <input class='validate' type='tel' name='phone' id='phone' />
+                <label for='reg'>Enter your Phone Number</label>
               </div>
             </div>
             <div class='row'>
@@ -74,7 +79,7 @@
             <br />
             <center>
               <div class='row'>
-                <button type='submit' name='btn_login'
+                <button type='button' name='btn_login' onclick="signup()"
                   class='col s12 btn btn-large waves-effect blue darken-3'>Login</button>
               </div>
             </center>
