@@ -22,11 +22,11 @@
             <ul id="nav-mobile" class="right hide-on-med-and-down">
                 <li>
                     <div class="chip">
-                        <img src="images/yuna.jpg">
-                        Akash Ravi
+                        <img src="images/user.png">
+                        <span id="myname"></span>
                     </div>
                 </li>
-                <li><a href="logout.html">Logout</a></li>
+                <li><a href="#" onclick="logout()">Logout</a></li>
             </ul>
         </div>
     </nav>
@@ -49,30 +49,6 @@
             <div class="row">
                 <form class="col s12">
                     <br>
-                    <div class="row">
-                        <div class="input-field col s6">
-                            <i class="material-icons prefix">account_circle</i>
-                            <input placeholder="Username" value="Akash Ravi" id="name" type="text"
-                                class="active validate" required />
-                            <label for="name">Username</label>
-                        </div>
-
-                        <div class="input-field col s6">
-                            <label for="password">Password</label>
-                            <input id="password" type="password" placeholder="Password" class="validate" required />
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="input-field col s6">
-                            <input placeholder="Email" id="email" type="email" class="validate">
-                            <label for="email">Email</label>
-                        </div>
-                        <div class="input-field col s6">
-                            <input placeholder="Phone No" id="phone" type="number" class="validate">
-                            <label for="phone">Contact No</label>
-                        </div>
-                    </div>
 
                     <div class="row">
                         <div class="input-field col s12">
@@ -108,11 +84,11 @@
                     <br>
                     <div class="row">
                         <div class="input-field col s6">
-                            <input placeholder="Religion" id="Religion" type="text" class="validate">
+                            <input placeholder="Religion" id="religion" type="text" class="validate">
                             <label for="Religion">Religion</label>
                         </div>
                         <div class="input-field col s6">
-                            <input placeholder="Caste" id="Caste" type="text" class="validate">
+                            <input placeholder="Caste" id="caste" type="text" class="validate">
                             <label for="Caste">Caste</label>
                         </div>
                     </div>
@@ -134,7 +110,7 @@
 
             </div>
             <div class="input-field col s4">
-                <button class="btn waves-effect waves-light" type="submit" name="action">Next
+                <button class="btn waves-effect waves-light" type="submit" name="action" onclick="personaldetails()">Next
                     <i class="material-icons right">send</i>
                 </button>
 
@@ -144,6 +120,9 @@
         <script src="https://code.jquery.com/jquery-3.4.1.min.js"
             integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+        <script src="js/serverConfig.js"></script>
+        <script src="js/main.js"></script>
+        <script src="js/personal.js"></script>
 
 </body>
 
