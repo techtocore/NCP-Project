@@ -39,3 +39,35 @@ function personaldetails() {
         alert(jqXHR.responseJSON.message);
     });
 }
+
+function getpersonaldetails() {
+
+    var settings = {
+        "async": true,
+        "crossDomain": true,
+        "url": baseURL + "/api/personaldetails",
+        "method": "GET",
+        "headers": {
+            "Authorization": "Bearer " + localStorage.getItem('token'),
+            "Content-Type": "application/json",
+            "cache-control": "no-cache"
+        },
+        "processData": false
+    }
+
+    $.ajax(settings).done(function (response) {
+        console.log(response);
+        var res = response.data;
+        document.getElementById('address').value = res.address;
+        document.getElementById('religion').value = res.religion;
+        document.getElementById('caste').value = res.caste;
+        document.getElementById('gname').value = res.gaurdianName;
+
+    }).fail(function (jqXHR, textStatus) {
+        alert(jqXHR.responseJSON.message);
+    });
+}
+
+window.onload = function () {
+    getpersonaldetails();
+};
