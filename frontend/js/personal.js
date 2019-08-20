@@ -62,9 +62,10 @@ function getpersonaldetails() {
         document.getElementById('religion').value = res.religion;
         document.getElementById('caste').value = res.caste;
         document.getElementById('gname').value = res.gaurdianName;
+        document.getElementById('address').focus();
 
     }).fail(function (jqXHR, textStatus) {
-        alert(jqXHR.responseJSON.message);
+        //alert(jqXHR.responseJSON.message);
     });
 }
 
