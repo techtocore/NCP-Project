@@ -26,4 +26,7 @@ function getName() {
 
 window.onload = function () {
     getName();
+    document.getElementById('myname').onclick = function () {
+        location.href = location.href.replace(/\/[^\/]*$/, '/account.html');
+    };
 };

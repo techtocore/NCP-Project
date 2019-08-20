@@ -1,24 +1,30 @@
-function signup() {
-    var name = document.getElementById('name').value;
-    var email = document.getElementById('email').value;
-    var password = document.getElementById('password').value;
-    var phone = document.getElementById('phone').value;
-    var username = document.getElementById('reg').value;
+function personaldetails() {
+    var address = document.getElementById('address').value;
+    var gender = document.querySelector('input[name="gender"]:checked').value;
+    var hosteller = document.querySelector('input[name="stay"]:checked').value;
+    var religion = document.getElementById('religion').value;
+    var caste = document.getElementById('caste').value;
+    var gname = document.getElementById('gname').value;
+    var gno = document.getElementById('gno').value;
+
 
     var payload = {
-        'name': name,
-        'email': email,
-        'username': username,
-        'password': password,
-        'phoneNumber': phone
+        'address': address,
+        'gender': gender,
+        'gaurdianName': gname,
+        'gardainContactNumber': gno,
+        'caste': caste,
+        'religion': religion,
+        'hosteller': hosteller
     }
 
     var settings = {
         "async": true,
         "crossDomain": true,
-        "url": baseURL + "/api/auth/register",
+        "url": baseURL + "/api/personaldetails",
         "method": "POST",
         "headers": {
+            "Authorization": "Bearer " + localStorage.getItem('token'),
             "Content-Type": "application/json",
             "cache-control": "no-cache"
         },
@@ -28,8 +34,7 @@ function signup() {
 
     $.ajax(settings).done(function (response) {
         console.log(response);
-        alert("Registration Successful");
-        location.href = location.href.replace(/\/[^\/]*$/, '/login.html');
+        alert("Updation Successful");
     }).fail(function (jqXHR, textStatus) {
         alert(jqXHR.responseJSON.message);
     });
