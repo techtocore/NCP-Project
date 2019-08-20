@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE users [
+<!ELEMENT user (name, username, email, phoneNumber, active, isFaculty, isSuperuser, isAdmin)>
+<!ELEMENT name (#PCDATA)>
+<!ELEMENT email (#PCDATA)>
+<!ELEMENT phoneNumber (#PCDATA)>
+<!ELEMENT active (#PCDATA)>
+<!ELEMENT isFaculty (#PCDATA)>
+<!ELEMENT isSuperuser (#PCDATA)>
+<!ELEMENT isAdmin (#PCDATA)>
+]>
+
+<users>
+    <user>
+        <name>Akash Ravi</name>
+        <username>akash</username>
+        <email>akashkravi@gmail.com</email>
+        <phoneNumber>9600909603</phoneNumber>
+        <active>true</active>
+        <isFaculty>false</isFaculty>
+        <isSuperuser>true</isSuperuser>
+        <isAdmin>true</isAdmin>
+    </user>
+    <user>
+        <name>Kailash</name>
+        <username>kailash</username>
+        <email>kailashnath@gmail.com</email>
+        <phoneNumber>9123456780</phoneNumber>
+        <active>false</active>
+        <isFaculty>true</isFaculty>
+        <isSuperuser>false</isSuperuser>
+        <isAdmin>true</isAdmin>
+    </user>
+    <user>
+        <name>Pavithra</name>
+        <username>pavi</username>
+        <email>pavi@gmail.com</email>
+        <phoneNumber>9087654321</phoneNumber>
+        <active>true</active>
+        <isFaculty>true</isFaculty>
+        <isSuperuser>false</isSuperuser>
+        <isAdmin>false</isAdmin>
+    </user>
+</users>
