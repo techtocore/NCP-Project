@@ -13,6 +13,8 @@
     "debug": "~2.6.9",
     "express": "~4.16.0",
     "express-bouncer": "^0.2.0",
+    "express-fileupload": "^1.1.5",
+    "fs-extra": "^8.1.0",
     "http-errors": "~1.6.2",
     "jade": "~1.11.0",
     "jsonwebtoken": "^8.5.1",

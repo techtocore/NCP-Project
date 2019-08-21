@@ -11,11 +11,13 @@ var usersRouter = require('./routes/user/UserController');
 var authRouter = require('./routes/auth/AuthController');
 var personalDetailsRouter = require('./routes/personalDetails/PersonalDetailsController');
 var academicDetailsRouter = require('./routes/academicDetails/AcademicDetailsController');
-var otherDetailsRouter = require('./routes/otherDetails/OtherDetailsController')
+var otherDetailsRouter = require('./routes/otherDetails/OtherDetailsController');
+var certificatesRouter = require('./routes/certificates/certificatesController');
 
 var app = express();
 
 app.use(cors());
+app.use(express.static('public'));
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -32,7 +34,8 @@ app.use('/api/users', usersRouter);
 app.use('/api/auth', authRouter);
 app.use('/api/personaldetails', personalDetailsRouter);
 app.use('/api/academicdetails', academicDetailsRouter);
-app.use('/api/otherdetails', otherDetailsRouter)
+app.use('/api/otherdetails', otherDetailsRouter);
+app.use('/api/certificates', certificatesRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
