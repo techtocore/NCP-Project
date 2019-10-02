@@ -8,7 +8,7 @@ var VerifyToken = require('../auth/VerifyToken');
 
 router.use(fileUpload());
 
-router.post('/upload/:username?', VerifyToken, async function (req, res) {
+router.put('/upload/:username?', VerifyToken, async function (req, res) {
     if (Object.keys(req.files).length == 0) {
         return res.status(400).send('No files were uploaded.');
     }

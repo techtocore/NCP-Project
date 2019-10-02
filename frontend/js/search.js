@@ -196,7 +196,7 @@ function populateTable() {
                         className: 'details-control',
                         orderable: false,
                         data: null,
-                        defaultContent: ''
+                        defaultContent: '+'
                     },
                     {
                         title: "Roll Number",
