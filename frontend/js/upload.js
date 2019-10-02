@@ -28,3 +28,39 @@ function upload() {
         }
     });
 }
+
+function docs() {
+    $.ajax({
+        async: true,
+        url: baseURL + "/api/certificates",
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer " + token,
+            "cache-control": "no-cache",
+        },
+        processData: false,
+        success: function (res, textStatus, xmLHttpRequest) {
+            var f = res.data;
+            console.log(f);
+            if (f.length === 0) {
+                $("#alist").hide();
+                $("#blist").show();
+            }
+            else {
+                for (let i = 0; i < f.length; i++) {
+                    $("#alist").append("<li>" + f[i] + "</li>");
+                }
+                $("#alist").show();
+                $("#blist").hide();
+            }
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+            alert(xhr.responseJSON.message);
+        }
+    });
+}
+
+$("#blist").hide();
+
+docs();
