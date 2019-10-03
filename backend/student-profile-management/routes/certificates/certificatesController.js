@@ -31,6 +31,24 @@ router.put('/upload/:username?', VerifyToken, async function (req, res) {
 
 });
 
+router.get('/download/:username?', VerifyToken, async function (req, res) {
+    if (req.params.username && !(req.superuser == 'true' || req.admin == 'true'))
+        return res.status(403).send({ auth: false, message: 'Not Allowed' });
+
+    const username = req.params.username || req.username;
+
+    const filename = '../data/' + username + '/certificates/' + req.query.fileName;
+
+    console.log(filename);
+
+    if (!(await fs.exists(filename)))
+        return res.status(404).send({ message: 'No Filles!' });
+
+    res.status(200).sendFile(path.join(__dirname, '../../', filename));
+
+});
+
+
 router.get('/:username?', VerifyToken, async function (req, res) {
     if (req.params.username && !(req.superuser == 'true' || req.admin == 'true'))
         return res.status(403).send({ auth: false, message: 'Not Allowed' });
@@ -52,20 +70,5 @@ router.get('/:username?', VerifyToken, async function (req, res) {
 
 });
 
-router.post('/download/:username?', VerifyToken, async function (req, res) {
-    if (req.params.username && !(req.superuser == 'true' || req.admin == 'true'))
-        return res.status(403).send({ auth: false, message: 'Not Allowed' });
-
-    const username = req.params.username || req.username;
-
-    const filename = '../data/' + username + '/certificates/' + req.body.fileName;
-
-    if (!(await fs.exists(filename)))
-        return res.status(404).send({ message: 'No Files!' });
-
-    res.status(200).sendFile(path.join(__dirname, '../../', filename));
-
-
-});
 
 module.exports = router;

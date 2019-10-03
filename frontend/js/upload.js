@@ -29,6 +29,36 @@ function upload() {
     });
 }
 
+function download(f) {
+
+    var a = document.createElement("a");
+    document.body.appendChild(a);
+    a.style = "display: none";
+    
+    $.ajax({
+        async: true,
+        url: baseURL + "/api/certificates/download?fileName=" + f,
+        method: "GET",
+        headers: {
+            "Authorization": "Bearer " + token,
+            "cache-control": "no-cache",
+        },
+        success: function (response, status, xhr) {
+            // If you want to use the image in your DOM:
+            var blob = new File([response], f);
+            var url = URL.createObjectURL(blob);
+            a.href = url;
+            a.download = f;
+            a.click();
+            window.URL.revokeObjectURL(url);
+
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+            alert(xhr.responseJSON.message);
+        }
+    });
+}
+
 function docs() {
     $.ajax({
         async: true,
@@ -49,7 +79,8 @@ function docs() {
             }
             else {
                 for (let i = 0; i < f.length; i++) {
-                    $("#alist").append("<li>" + f[i] + "</li>");
+                    let s = f[i];
+                    $("#alist").append("<li onclick=\"download('" + s + "')\">" + s + "</li>");
                 }
                 $("#alist").show();
                 $("#blist").hide();
