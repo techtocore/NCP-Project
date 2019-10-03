@@ -12,7 +12,7 @@ function personaldetails() {
         'address': address,
         'gender': gender,
         'gaurdianName': gname,
-        'gardainContactNumber': gno,
+        'gaurdianContactNumeber': gno,
         'caste': caste,
         'religion': religion,
         'hosteller': hosteller
@@ -62,6 +62,7 @@ function getpersonaldetails() {
         document.getElementById('religion').value = res.religion;
         document.getElementById('caste').value = res.caste;
         document.getElementById('gname').value = res.gaurdianName;
+        document.getElementById('gno').value = res.gaurdianContactNumeber;
         document.getElementById('address').focus();
 
     }).fail(function (jqXHR, textStatus) {

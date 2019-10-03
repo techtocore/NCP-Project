@@ -7,6 +7,7 @@ function personaldetails() {
     var workshopsAttended = document.getElementById('workshopsAttended').value;
     var eventsAndWorkshopDescription = document.getElementById('eventsAndWorkshopDescription').value;
     var papersAndProject = document.getElementById('papersAndProject').value;
+    var papersAndProjectStatus = document.querySelector('input[name="research"]:checked').value;
     var fieldsOfSpecialization = document.getElementById('fieldsOfSpecialization').value;
     var computerLanguagesKnown = document.getElementById('computerLanguagesKnown').value;
 
@@ -73,7 +74,6 @@ function getpersonaldetails() {
         document.getElementById('workshopsAttended').value = res.workshopsAttended;
         document.getElementById('eventsAndWorkshopDescription').value = res.eventsAndWorkshopDescription;
         document.getElementById('papersAndProject').value = res.papersAndProject;
-        document.getElementById('ugAdmissionNumber').value = res.ugAdmissionNumber;
         document.getElementById('fieldsOfSpecialization').value = res.fieldsOfSpecialization;
         document.getElementById('computerLanguagesKnown').value = res.computerLanguagesKnown;
     }).fail(function (jqXHR, textStatus) {

@@ -1,6 +1,6 @@
 function personaldetails() {
     var sslcInstitution = document.getElementById('sslcInstitution').value;
-    var sslcBoard = document.getElementById('sslcboard').value;
+    var sslcBoard = document.getElementById('sslcBoard').value;
     var sslcYearOfPassing = document.getElementById('sslcYearOfPassing').value;
     var sslcMarks = document.getElementById('sslcMarks').value;
     var hscInstitution = document.getElementById('hscInstitution').value;

@@ -45,7 +45,7 @@ router.post('/:username?', VerifyToken, function (req, res) {
         religion: req.body.religion,
         caste: req.body.caste,
         gaurdianName: req.body.gaurdianName,
-        gardainContactNumber: req.body.gardainContactNumber,
+        gaurdianContactNumeber: req.body.gaurdianContactNumeber,
     }
 
     addDetails(data).then((msg) => {
