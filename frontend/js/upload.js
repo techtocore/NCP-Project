@@ -34,7 +34,7 @@ function download(f) {
     var a = document.createElement("a");
     document.body.appendChild(a);
     a.style = "display: none";
-    
+
     $.ajax({
         async: true,
         url: baseURL + "/api/certificates/download?fileName=" + f,
