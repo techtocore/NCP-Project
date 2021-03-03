@@ -23,6 +23,6 @@
     "nodemailer": "^6.3.0",
     "nodemon": "^1.19.3",
     "npm-check-updates": "^3.1.23",
-    "pug": "^2.0.4"
+    "pug": "^3.0.1"
   }
 }
